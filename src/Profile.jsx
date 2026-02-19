@@ -4,7 +4,7 @@ import { UserContext } from './UserProvider'
 import { useContext } from 'react'
 
 export default function Profile() {
-    let navigate = useNavigate();
+    
     const { email, login, logout } = useContext(UserContext)
 
     return (

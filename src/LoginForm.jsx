@@ -10,6 +10,7 @@ function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const {login} = useContext(UserContext); 
+  let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,6 +36,7 @@ const saltRes = await fetch("http://localhost:8080/salt?" + new URLSearchParams(
 
       if (response.ok) {
         login(email);
+        navigate('/profile')
         setIsSuccess(true);
         setMessage("Vous êtes connecté.");
       } else {
