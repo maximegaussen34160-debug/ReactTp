@@ -18,7 +18,7 @@ function LoginForm() {
     setMessage("");
 
     try {
-const saltRes = await fetch("http://localhost:8080/salt?" + new URLSearchParams({ email }));
+      const saltRes = await fetch("http://localhost:8080/salt?" + new URLSearchParams({ email }));
       const { salt } = await saltRes.json();
 
       const encoder = new TextEncoder();
