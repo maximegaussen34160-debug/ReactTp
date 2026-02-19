@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { UserContext } from './UserProvider'
+import { useContext } from 'react'
 
 
 function LoginForm() {
@@ -7,6 +9,7 @@ function LoginForm() {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const {login} = useContext(UserContext); 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +34,7 @@ const saltRes = await fetch("http://localhost:8080/salt?" + new URLSearchParams(
       });
 
       if (response.ok) {
+        login(email);
         setIsSuccess(true);
         setMessage("Vous êtes connecté.");
       } else {
