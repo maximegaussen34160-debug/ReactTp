@@ -14,8 +14,11 @@ function LoginForm() {
     setMessage("");
 
     try {
+const saltRes = await fetch("http://localhost:8080/salt?" + new URLSearchParams({ email }));
+      const { salt } = await saltRes.json();
+
       const encoder = new TextEncoder();
-      const data = encoder.encode(password);
+      const data = encoder.encode(password+salt);
       const hashBuffer = await crypto.subtle.digest("SHA-256", data);
       const hashedPassword = Array.from(new Uint8Array(hashBuffer))
         .map((b) => b.toString(16).padStart(2, "0"))
