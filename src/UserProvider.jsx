@@ -8,7 +8,7 @@ export function UserProvider({ children })
 
     function login(email)
     {
-        setEmail({ email })
+        setEmail(email)
     }
 
     function logout()
